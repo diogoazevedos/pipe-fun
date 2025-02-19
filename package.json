@@ -1,0 +1,78 @@
+{
+	"name": "pipe-fun",
+	"version": "1.0.0",
+	"description": "Build and compose pipelines with ease",
+	"license": "BSD-3-Clause",
+	"repository": "diogoazevedos/pipe-fun",
+	"author": {
+		"name": "Diogo Azevedo",
+		"email": "diogoazevedos@gmail.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./distribution/main.d.ts",
+		"default": "./distribution/main.js"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"prepare": "husky",
+		"build": "tsc",
+		"prepublishOnly": "npm run build",
+		"test": "xo && tsc --noEmit && c8 ava"
+	},
+	"files": [
+		"distribution/main.js",
+		"distribution/main.d.ts"
+	],
+	"keywords": [
+		"pipeline",
+		"pipe",
+		"async",
+		"promise",
+		"parallel",
+		"utilities",
+		"typescript"
+	],
+	"devDependencies": {
+		"@commitlint/cli": "^19.7.1",
+		"@commitlint/config-conventional": "^19.7.1",
+		"@sindresorhus/tsconfig": "^7.0.0",
+		"@types/node": "^22.13.4",
+		"ava": "^6.2.0",
+		"c8": "^10.1.3",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.4.3",
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.3",
+		"xo": "^0.60.0"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*.ts": "xo --fix"
+	},
+	"ava": {
+		"extensions": {
+			"ts": "module"
+		},
+		"nodeArguments": [
+			"--import=tsx/esm"
+		],
+		"workerThreads": false
+	},
+	"c8": {
+		"reporter": [
+			"text",
+			"html",
+			"lcov"
+		],
+		"extension": [
+			".ts"
+		]
+	}
+}
