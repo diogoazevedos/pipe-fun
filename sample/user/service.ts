@@ -3,8 +3,8 @@ import type {User} from './schema.js';
 import type {UserRepository} from './repository.js';
 
 export type UserService = {
-	create(name: string, email: string): Promise<void>;
-	getByUserEmail(email: string): Promise<User>;
+	create(name: string, email: string): Promise<User>;
+	getByEmail(email: string): Promise<User>;
 };
 
 type UserServiceDependency = {
@@ -28,9 +28,11 @@ export function makeUserService({userRepository}: UserServiceDependency): UserSe
 		};
 
 		await userRepository.create(user);
+
+		return user;
 	}
 
-	async function getByUserEmail(email: string) {
+	async function getByEmail(email: string) {
 		const users = await userRepository.getAll();
 
 		const user = users.find(user => user.email === email);
@@ -42,5 +44,5 @@ export function makeUserService({userRepository}: UserServiceDependency): UserSe
 		throw new Error('User not found');
 	}
 
-	return {create, getByUserEmail};
+	return {create, getByEmail};
 }
