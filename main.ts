@@ -46,6 +46,7 @@ export function pipe<Output, C, B, A, Input>(
 	s3: Pipe<C, B>,
 	s4: Pipe<Output, C>
 ): Pipe<Output, Input>;
+/* eslint-disable max-params */
 export function pipe<Output, D, C, B, A, Input>(
 	s1: Pipe<A, Input>,
 	s2: Pipe<B, A>,
@@ -70,6 +71,7 @@ export function pipe<Output, F, E, D, C, B, A, Input>(
 	s6: Pipe<F, E>,
 	s7: Pipe<Output, F>
 ): Pipe<Output, Input>;
+/* eslint-enable max-params */
 export function pipe<Input>(
 	init: Pipe<unknown, Input>,
 	...steps: Array<Pipe<unknown, unknown>>
@@ -107,6 +109,7 @@ export function parallel<H, G, F, E, D, C, B, A>(
 	s3: Pipe<F, E>,
 	s4: Pipe<H, G>
 ): Pipe<[B, D, F, H], A & C & E & G>;
+/* eslint-disable max-params */
 export function parallel<J, I, H, G, F, E, D, C, B, A>(
 	s1: Pipe<B, A>,
 	s2: Pipe<D, C>,
@@ -131,6 +134,7 @@ export function parallel<N, M, L, K, J, I, H, G, F, E, D, C, B, A>(
 	s6: Pipe<L, K>,
 	s7: Pipe<N, M>
 ): Pipe<[B, D, F, H, J, L, N], A & C & E & G & I & K & M>;
+/* eslint-enable max-params */
 export function parallel<Input>(...steps: Array<Pipe<unknown, Input>>): Pipe<unknown[], Input> {
 	return async input => Promise.all(steps.map(step => step(input)));
 }
@@ -153,9 +157,7 @@ type Assign<T extends unknown[]> = T extends [infer Head, ...infer Tail]
  * //=> {name: 'John Smith', hobby: 'Coding'}
  * ```
  */
-export function assign<Output extends unknown[], Input>(
-	step: Step<Output, Input>,
-): Pipe<Assign<Output>, Input> {
+export function assign<Output extends unknown[], Input>(step: Step<Output, Input>): Pipe<Assign<Output>, Input> {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 	return async input => Object.assign({}, ...(await step(input)));
 }

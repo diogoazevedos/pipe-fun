@@ -9,7 +9,7 @@ export type Logged = {
 
 export function makeWithUser(userService: UserService) {
 	return middleware(async ({claim}: Authorized) => {
-		const user = await userService.getByUserEmail(claim.email);
+		const user = await userService.getByEmail(claim.email);
 
 		return {user};
 	});
