@@ -6,12 +6,10 @@ export type Step<Output, T> = <Input extends T>(input: Input) => Awaitable<Outpu
  * Special step that assign the input and output.
  *
  * @example
- * ```
  * const addHobby = middleware(() => ({hobby: 'Coding'}));
  *
  * await addHobby({name: 'John Smith'});
  * //=> {name: 'John Smith', hobby: 'Coding'}
- * ```
  */
 export function middleware<Output, T>(step: Pipe<Output, T>) {
 	return async <Input extends T>(input: Input) => ({...input, ...(await step(input))});
@@ -21,7 +19,6 @@ export function middleware<Output, T>(step: Pipe<Output, T>) {
  * Compose multiple steps.
  *
  * @example
- * ```
  * const getUser = async () => ({name: 'John Smith'});
  * const addHobby = middleware(() => ({hobby: 'Coding'}));
  *
@@ -29,7 +26,6 @@ export function middleware<Output, T>(step: Pipe<Output, T>) {
  *
  * await pipeline();
  * //=> {name: 'John Smith', hobby: 'Coding'}
- * ```
  */
 export function pipe<Output, A, Input>(
 	s1: Pipe<A, Input>,
@@ -84,7 +80,6 @@ export function pipe<Input>(
  * Execute steps in parallel.
  *
  * @example
- * ```
  * const getUser = async () => ({name: 'John Smith'});
  * const getSession = async () => ({id: '4a53'});
  *
@@ -92,7 +87,6 @@ export function pipe<Input>(
  *
  * await pipeline();
  * //=> [{name: 'John Smith'}, {id: '4a53'}]
- * ```
  */
 export function parallel<D, C, B, A>(
 	s1: Pipe<B, A>,
@@ -147,7 +141,6 @@ type Assign<T extends unknown[]> = T extends [infer Head, ...infer Tail]
  * Assign the output of a parallel step.
  *
  * @example
- * ```
  * const getUser = async () => ({name: 'John Smith'});
  * const addHobby = middleware(() => ({hobby: 'Coding'}));
  *
@@ -155,7 +148,6 @@ type Assign<T extends unknown[]> = T extends [infer Head, ...infer Tail]
  *
  * await pipeline();
  * //=> {name: 'John Smith', hobby: 'Coding'}
- * ```
  */
 export function assign<Output extends unknown[], Input>(step: Step<Output, Input>): Pipe<Assign<Output>, Input> {
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -166,7 +158,6 @@ export function assign<Output extends unknown[], Input>(step: Step<Output, Input
  * Special step that passthrough the input.
  *
  * @example
- * ```
  * type User = {name: string};
  *
  * const notifyLogin = (user: User) => console.log(`User ${user.name} logged in`);
@@ -175,7 +166,6 @@ export function assign<Output extends unknown[], Input>(step: Step<Output, Input
  *
  * await pipeline({name: 'John Smith'});
  * //=> {name: 'John Smith'}
- * ```
  */
 export function passthrough<T>(step: Pipe<unknown, T>) {
 	// eslint-disable-next-line no-sequences
@@ -186,11 +176,9 @@ export function passthrough<T>(step: Pipe<unknown, T>) {
  * Placeholder for step without input.
  *
  * @example
- * ```
  * const pipeline = pipe(() => ({name: 'John Smith'}), user => user.name);
  *
  * await pipeline(_);
  * //=> 'John Smith'
- * ```
  */
 export const _ = {};
