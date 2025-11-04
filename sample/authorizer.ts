@@ -1,5 +1,5 @@
-import {middleware} from '../main.js';
-import type {Request} from './http.js';
+import {middleware} from '../main.ts';
+import type {Request} from './http.ts';
 
 export type Claim = {
 	email: string;

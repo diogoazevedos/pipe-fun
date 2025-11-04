@@ -1,15 +1,15 @@
 import {
 	assign, parallel, passthrough, pipe,
-} from '../../main.js';
-import {createAuthorizer, withAuthorization} from '../authorizer.js';
-import {makeTaskRepository} from '../task/repository.js';
-import {makeTaskService} from '../task/service.js';
-import {makeUserRepository} from '../user/repository.js';
-import {makeUserService} from '../user/service.js';
-import {withValidation} from '../validator.js';
-import {makeWithUser, notifyUserLogin} from '../user/middleware.js';
-import {makeCreateTask, notifyTaskCreation} from '../task/middleware.js';
-import type {Request} from '../http.js';
+} from '../../main.ts';
+import {createAuthorizer, withAuthorization} from '../authorizer.ts';
+import {makeTaskRepository} from '../task/repository.ts';
+import {makeTaskService} from '../task/service.ts';
+import {makeUserRepository} from '../user/repository.ts';
+import {makeUserService} from '../user/service.ts';
+import {withValidation} from '../validator.ts';
+import {makeWithUser, notifyUserLogin} from '../user/middleware.ts';
+import {makeCreateTask, notifyTaskCreation} from '../task/middleware.ts';
+import type {Request} from '../http.ts';
 
 const authorizer = createAuthorizer({secret: 'youshallnotpass'});
 

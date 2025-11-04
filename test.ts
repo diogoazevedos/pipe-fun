@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
 	_, assign, middleware, parallel, passthrough, pipe,
-} from './main.js';
+} from './main.ts';
 
 const getUser = async () => ({name: 'John Smith'});
 const addAge = middleware(async () => ({age: 30}));
