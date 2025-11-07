@@ -1,6 +1,6 @@
 import {randomUUID} from 'node:crypto';
-import type {TaskRepository} from './repository.js';
-import type {Task} from './schema.js';
+import type {TaskRepository} from './repository.ts';
+import type {Task} from './schema.ts';
 
 export type TaskService = {
 	create(description: string, userId: string): Promise<Task>;

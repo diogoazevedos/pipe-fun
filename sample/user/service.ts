@@ -1,6 +1,6 @@
 import {randomUUID} from 'node:crypto';
-import type {User} from './schema.js';
-import type {UserRepository} from './repository.js';
+import type {User} from './schema.ts';
+import type {UserRepository} from './repository.ts';
 
 export type UserService = {
 	create(name: string, email: string): Promise<User>;

@@ -1,8 +1,8 @@
-import {middleware} from '../../main.js';
-import type {Request} from '../http.js';
-import type {Logged} from '../user/middleware.js';
-import type {Task} from './schema.js';
-import type {TaskService} from './service.js';
+import {middleware} from '../../main.ts';
+import type {Request} from '../http.ts';
+import type {Logged} from '../user/middleware.ts';
+import type {Task} from './schema.ts';
+import type {TaskService} from './service.ts';
 
 type WithTask = {
 	task: Task;

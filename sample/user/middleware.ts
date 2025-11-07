@@ -1,7 +1,7 @@
-import {middleware} from '../../main.js';
-import type {Authorized} from '../authorizer.js';
-import type {User} from './schema.js';
-import type {UserService} from './service.js';
+import {middleware} from '../../main.ts';
+import type {Authorized} from '../authorizer.ts';
+import type {User} from './schema.ts';
+import type {UserService} from './service.ts';
 
 export type Logged = {
 	user: User;

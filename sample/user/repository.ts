@@ -1,4 +1,4 @@
-import type {User} from './schema.js';
+import type {User} from './schema.ts';
 
 const users = new Map<string, User>();
 

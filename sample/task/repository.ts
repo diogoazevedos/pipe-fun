@@ -1,4 +1,4 @@
-import type {Task} from './schema.js';
+import type {Task} from './schema.ts';
 
 const tasks = new Map<string, Task>();
 
